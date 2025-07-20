@@ -25,5 +25,4 @@ router.post("/login", login);
  * @access  Private
  */
 router.get("/me", authenticate, getPatientProfile);
-
 export default router;

@@ -60,12 +60,20 @@ export const validateRequiredFields = (
 ): { isValid: boolean; missingFields: string[] } => {
   const requiredFields = ["name", "civilID", "password"];
   const missingFields: string[] = [];
-
-  requiredFields.forEach((field) => {
-    if (!data[field] || data[field].trim() === "") {
-      missingFields.push(field);
-    }
-  });
+  // requiredFields.forEach((field) => {
+  //   if (
+  //     data[field] === undefined ||
+  //     data[field] === null ||
+  //     (typeof data[field] === "string" && data[field].trim() === "")
+  //   ) {
+  //     missingFields.push(field);
+  //   }
+  // });
+  // requiredFields.forEach((field) => {
+  //   if (!data[field] || data[field].trim() === "") {
+  //     missingFields.push(field);
+  //   }
+  // });
 
   return {
     isValid: missingFields.length === 0,

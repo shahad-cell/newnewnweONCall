@@ -3,6 +3,9 @@ import pdfParse from "pdf-parse";
 import fs from "fs";
 import { OpenAI } from "openai";
 import MedicalReport from "../models/MedicalReport";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables from .env file
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 

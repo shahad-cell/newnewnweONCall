@@ -21,6 +21,8 @@ import messageRoutes from "./routes/messageRoutes";
 import callRoutes from "./routes/callRoutes";
 import medicalReportRoutes from "./routes/medicalReportRoutes";
 import prescriptionRoutes from "./routes/prescriptionRoutes";
+import authRouter from "./routes/AuthRouter";
+import pateintRouter from "./routes/PatientRouter";
 
 dotenv.config();
 connectDB();
@@ -42,6 +44,8 @@ app.get("/api/health", (_req, res) => {
 });
 
 // Mount routes
+app.use("/auth", authRouter);
+app.use("/dependants", pateintRouter); // dependants
 app.use("/appointments", appointmentsRoutes);
 app.use("/bookings", bookingsRoutes);
 app.use("/availability", availabilityRoutes);

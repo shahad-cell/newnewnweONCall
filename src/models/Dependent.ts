@@ -23,8 +23,8 @@ export interface IDependent extends Document {
 const dependentSchema = new Schema<IDependent>(
   {
     name: { type: String, required: true },
-    civilID: { type: Number, required: true },
-    phoneNum: { type: Number, required: true },
+    civilID: { type: Number, required: false },
+    phoneNum: { type: Number, required: false },
     bloodType: { type: String },
     image: { type: String },
     gender: { type: String },

@@ -2,10 +2,12 @@ import { Request, Response } from "express";
 import Dependent from "../models/Dependent";
 import Patient from "../models/Patients";
 
+// create dependants
 const addDependent = async (req: Request, res: Response) => {
   try {
     const { name, age, relationship } = req.body;
-    const patientId = req.body.patientId;
+    // const patientId = req.body.patientId;
+    const patientId = (req as any).user.id;
 
     if (!name || !age || !relationship || !patientId) {
       return res.status(422).json({
@@ -36,14 +38,15 @@ const addDependent = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
+// get dependants
 const getDependents = async (req: Request, res: Response) => {
-  const patientId = req.body.patientId;
+  // const patientId = req.body.patientId;
+  const patientId = (req as any).user.id;
 
   const dependents = await Dependent.find({ careGiver: patientId }); // 🔷 FIXED
   res.status(200).json({ dependents });
 };
-
+// update dependants
 const updateDependent = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, age, relationship } = req.body;
@@ -75,7 +78,8 @@ const deleteDependent = async (req: Request, res: Response) => {
 
     await Dependent.findByIdAndDelete(id);
 
-    await Patient.findByIdAndUpdate(dependent.careGiver, { // 🔷 FIXED
+    await Patient.findByIdAndUpdate(dependent.careGiver, {
+      // 🔷 FIXED
       $pull: { dependents: id },
     });
 

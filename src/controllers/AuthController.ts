@@ -97,8 +97,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const newUser = new Patients({
       name: name.trim(),
       email: email.toLowerCase().trim(),
-      phone: phone.trim(),
-      civilID: civilID.trim(),
+      phone: phone,
+      civilID: civilID,
       password: hashedPassword,
       role: role?.trim() || "Patient",
     });

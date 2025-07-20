@@ -23,10 +23,7 @@ export const doctorRegistrationSchema = z.object({
 export const nurseRegistrationSchema = z.object({
   ...baseSchema,
   companyName: z.string().min(1),
-  languages: z.union([
-    z.string(),
-    z.array(z.string())
-  ]).optional(),
+  languages: z.union([z.string(), z.array(z.string())]).optional(),
 });
 
 // Lab
